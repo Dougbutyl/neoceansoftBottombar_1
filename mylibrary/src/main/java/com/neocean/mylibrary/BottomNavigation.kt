@@ -389,6 +389,7 @@ class BottomNavigation : FrameLayout, OnItemClickListener {
             isAttachedToWindow -> {
                 setItems(MenuParser.inflateMenu(context, menuResId))
                 null
+                MenuParser.inflateMenu(context, menuResId)
             }
             else -> MenuParser.inflateMenu(context, menuResId)
         }
