@@ -25,6 +25,7 @@ class MenuParser {
     @Suppress("unused")
     class Menu(private val context: Context) {
 
+
         var items: Array<BottomNavigationItem>? = null
             set(items) {
                 field = items
@@ -156,6 +157,8 @@ class MenuParser {
         a.recycle()
     }
 
+
+
     fun pullItem(): MenuItem? {
         val current = item
         item = null
@@ -193,6 +196,7 @@ class MenuParser {
     }
 
     companion object {
+
         fun inflateMenu(context: Context, menuRes: Int): Menu? {
             val list = ArrayList<BottomNavigationItem>()
 

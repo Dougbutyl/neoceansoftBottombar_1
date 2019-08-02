@@ -324,8 +324,8 @@ class BottomNavigation : FrameLayout, OnItemClickListener {
             if (null != activity) {
                 val systembarTint = SystemBarTintManager(activity)
                 bottomInset = if (MiscUtils.hasTranslucentNavigation(activity)
-                                  && systembarTint.config.isNavigationAtBottom
-                                  && systembarTint.config.hasNavigtionBar()) {
+                        && systembarTint.config.isNavigationAtBottom
+                        && systembarTint.config.hasNavigtionBar()) {
                     systembarTint.config.navigationBarHeight
                 } else {
                     0
@@ -798,6 +798,13 @@ class BottomNavigation : FrameLayout, OnItemClickListener {
             val viewAbstract = itemsContainer!!.findViewById<View>(itemId) as BottomNavigationItemViewAbstract?
             viewAbstract?.invalidateBadge()
         }
+    }
+
+    /**
+     * set menu backgroung color
+     */
+    fun setMenuBackground(colorRes: Int) {
+        menu?.background = resources.getColor(colorRes)
     }
 
     interface OnMenuItemSelectionListener {
