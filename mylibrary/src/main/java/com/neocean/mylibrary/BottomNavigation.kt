@@ -805,7 +805,7 @@ class BottomNavigation : FrameLayout, OnItemClickListener {
      * set menu backgroung color
      */
     fun setMenuBackground(colorRes: Int) {
-        pendingMenu?.background = resources.getColor(colorRes)
+       MenuParser.Companion.menu?.background = resources.getColor(colorRes)
     }
 
     interface OnMenuItemSelectionListener {
