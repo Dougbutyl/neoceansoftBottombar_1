@@ -20,7 +20,8 @@ import java.util.*
 class MenuParser {
 
     private var item: MenuItem? = null
-    private var menu: Menu? = null
+
+
 
     @Suppress("unused")
     class Menu(private val context: Context) {
@@ -137,7 +138,7 @@ class MenuParser {
             var itemIconResId: Int = 0,
             var isItemEnabled: Boolean = false,
             var itemColor: Int = 0
-                       )
+    )
 
     private fun readMenu(context: Context, attrs: AttributeSet) {
         menu = Menu(context)
@@ -156,7 +157,6 @@ class MenuParser {
         }
         a.recycle()
     }
-
 
 
     fun pullItem(): MenuItem? {
@@ -196,6 +196,113 @@ class MenuParser {
     }
 
     companion object {
+        var menu: Menu? = null
+        fun setMenuBackground(context:Context,colorRes:Int){
+            menu?.background=context.resources.getColor(colorRes)
+        }
+
+
+
+
+//        fun inflateMenu(context: Context, menu: Menu): Menu? {
+//            val list = ArrayList<BottomNavigationItem>()
+//
+//            val menuParser = MenuParser()
+//
+//            try {
+//                menu.
+//                val parser = context.resources.getLayout(menuRes)
+//                val attrs = Xml.asAttributeSet(parser)
+//
+//                var tagName: String
+//                var eventType = parser.eventType
+//                var lookingForEndOfUnknownTag = false
+//                var unknownTagName: String? = null
+//
+//                do {
+//                    if (eventType == XmlPullParser.START_TAG) {
+//                        tagName = parser.name
+//                        if (tagName == "menu") {
+//                            menuParser.readMenu(context, attrs)
+//                            eventType = parser.next()
+//                            break
+//                        }
+//                        throw RuntimeException("Expecting menu, got $tagName")
+//                    }
+//                    eventType = parser.next()
+//                } while (eventType != XmlPullParser.END_DOCUMENT)
+//
+//                var reachedEndOfMenu = false
+//
+//                loop@ while (!reachedEndOfMenu) {
+//                    when (eventType) {
+//                        XmlPullParser.START_TAG -> {
+//                            if (lookingForEndOfUnknownTag) {
+//                                break@loop
+//                            }
+//                            tagName = parser.name
+//                            if (tagName == "item") {
+//                                menuParser.readItem(context, attrs)
+//                            } else {
+//                                lookingForEndOfUnknownTag = true
+//                                unknownTagName = tagName
+//                            }
+//                        }
+//
+//                        XmlPullParser.END_TAG -> {
+//                            tagName = parser.name
+//                            if (lookingForEndOfUnknownTag && tagName == unknownTagName) {
+//                                lookingForEndOfUnknownTag = false
+//                                unknownTagName = null
+//                            } else if (tagName == "item") {
+//                                if (menuParser.hasItem()) {
+//                                    val item = menuParser.pullItem()
+//                                    val tab = BottomNavigationItem(item!!.itemId, item.itemIconResId,
+//                                            item.itemTitle.toString()
+//                                    )
+//                                    tab.isEnabled = item.isItemEnabled
+//                                    tab.color = item.itemColor
+//                                    list.add(tab)
+//                                }
+//                            } else if (tagName == "menu") {
+//                                reachedEndOfMenu = true
+//                            }
+//                        }
+//
+//                        XmlPullParser.END_DOCUMENT -> throw RuntimeException("Unexpected end of document")
+//
+//                        else -> {
+//                        }
+//                    }
+//                    eventType = parser.next()
+//                }
+//            } catch (e: Exception) {
+//                return null
+//            }
+//
+//            if (menuParser.hasMenu()) {
+//                val menu = menuParser.pullMenu()
+//                menu!!.items = list.toTypedArray()
+//                return menu
+//            }
+//
+//            return null
+//        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         fun inflateMenu(context: Context, menuRes: Int): Menu? {
             val list = ArrayList<BottomNavigationItem>()
@@ -251,7 +358,7 @@ class MenuParser {
                                     val item = menuParser.pullItem()
                                     val tab = BottomNavigationItem(item!!.itemId, item.itemIconResId,
                                             item.itemTitle.toString()
-                                                                  )
+                                    )
                                     tab.isEnabled = item.isItemEnabled
                                     tab.color = item.itemColor
                                     list.add(tab)

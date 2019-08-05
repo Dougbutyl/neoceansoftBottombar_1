@@ -306,7 +306,10 @@ class BottomNavigation : FrameLayout, OnItemClickListener {
         typeface = SoftReference(Typeface.DEFAULT)
 
         val array = context.obtainStyledAttributes(attrs, R.styleable.BottomNavigation, defStyleAttr, defStyleRes)
-        val menuResId = array.getResourceId(R.styleable.BottomNavigation_bbn_entries, 0)
+        var menuResId = array.getResourceId(R.styleable.BottomNavigation_bbn_entries, 0)
+        when(menuResId){
+            0-> menuResId=R.menu.bottombar_menu_4items
+        }
         pendingMenu = MenuParser.inflateMenu(context, menuResId)
         badgeProvider = parseBadgeProvider(this, context, array.getString(R.styleable.BottomNavigation_bbn_badgeProvider))
         array.recycle()
@@ -805,7 +808,7 @@ class BottomNavigation : FrameLayout, OnItemClickListener {
      * set menu backgroung color
      */
     fun setMenuBackground(colorRes: Int) {
-       MenuParser.Companion.menu?.background = resources.getColor(colorRes)
+       MenuParser.setMenuBackground(context,colorRes)
     }
 
     interface OnMenuItemSelectionListener {
